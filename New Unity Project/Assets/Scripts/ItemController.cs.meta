@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 714d143aff9841747bb21f19e7aaddbe
+timeCreated: 1459302168
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - ProcessButton: {fileID: 11459400, guid: 50fdd02f051c10141b83d5b4b57e7f33, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
