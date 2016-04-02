@@ -15,6 +15,7 @@ public class ItemController : MonoBehaviour {
     public Text PurchasePriceUnitsText;
     public Text ProfitText;
     public Text QuantityText;
+    public Image ProgressPanel;
 
     //Modifiers
     public double BaseCost;
@@ -76,7 +77,7 @@ public class ItemController : MonoBehaviour {
         Cost = BaseCost;
 
         if(Cost * 4 < Profit) {
-            Cost = Profit / 4;
+            Cost = Profit / 4 * 3;
         }
 
         SetPurchaseText();
@@ -106,8 +107,10 @@ public class ItemController : MonoBehaviour {
         if (IsProcessing) {
             TimeSpan timeLeft = TimeSpan.FromSeconds(SecondsToProcess - SecondsProcessed);
             TimerText.text = string.Format("{0:D2}:{1:D2}:{2:D2}", timeLeft.Hours, timeLeft.Minutes, timeLeft.Seconds + 1);
+            ProgressPanel.fillAmount = (float)(SecondsProcessed / SecondsToProcess);
         } else {
             TimerText.text = "00:00:00";
+            ProgressPanel.fillAmount = 0;
         }
     }
 
