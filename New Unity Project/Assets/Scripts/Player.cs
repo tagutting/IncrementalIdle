@@ -8,7 +8,7 @@ public class Player : MonoBehaviour {
 	// Use this for initialization
 
 	void Start () {
-        Profit = 0;
+        //Profit = 0;
         SetProfitText();
 	}
 	

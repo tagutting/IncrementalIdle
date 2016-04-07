@@ -29,7 +29,7 @@ public class ItemController : MonoBehaviour {
     private int SecondsToProcess;
     private double SecondsProcessed = 0;
     private bool IsProcessing = false;
-    private bool IsContinuous = false;
+    private bool IsAutoManaged = false;
     private bool IsProfitPerSecond = false;
     private double Profit = 0;
     private double Multiplier = 1.15;
@@ -44,7 +44,7 @@ public class ItemController : MonoBehaviour {
 
     public void click_BuyMoreButton() {
         if (Cost <= Player.Profit) {
-            Player.Profit -= Cost;
+            Player.Profit -= Cost;            
             Cost *= Multiplier;
             Quantity++;
             Profit = Profit * Multiplier;
@@ -53,6 +53,17 @@ public class ItemController : MonoBehaviour {
             SetPurchaseText();
             Player.SetProfitText();
         }
+    }
+
+    public void SetAutoManaged(bool isAutoManaged) {
+        IsAutoManaged = isAutoManaged;
+        //set IsProcessing true if IsManaged == true, else leave as is
+        IsProcessing |= IsAutoManaged;
+        //Not sure if we want to disable the ProcessButton
+    }
+
+    public int GetNumber() {
+        return Number;
     }
 
     // Use this for initialization
@@ -89,7 +100,7 @@ public class ItemController : MonoBehaviour {
         if(IsProcessing) {
             SecondsProcessed += Time.deltaTime;            
             if(SecondsProcessed >= SecondsToProcess) {
-                IsProcessing = false;
+                IsProcessing = IsAutoManaged;
                 SecondsProcessed = 0;
                 Player.Profit += Profit;
                 Player.SetProfitText();
